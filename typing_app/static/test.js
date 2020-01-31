@@ -1,5 +1,5 @@
 var timeleft = 60;
-var test_text = document.getElementById("content").value;
+var test_text = document.getElementById("test_content").value;
 var words = test_text.split(" ");
 var i = 0;
 var temp = "";
@@ -7,6 +7,10 @@ var correctEntries = 0;
 var errors = 0;
 var speed = 0;
 var entryCount = 0;
+
+for (var j = 0; j < words.length; j++){
+    document.getElementById("content").innerHTML += "<span id ='" + j + "'>" + words[j] + " </span>";
+}
 
 var downloadTimer = setInterval(function () {
     timeleft -= 1;
@@ -31,6 +35,9 @@ function compareInput() {
     }
     i++;
     temp = "";
+    document.getElementById(i).style.backgroundColor = "yellow";
+    document.getElementById(i-1).style.backgroundColor = "white";
+    document.getElementById(i-1).style.color = "lightgrey";
 }
 
 document.getElementById("user_input").oninput = function record_word(e) {
@@ -51,6 +58,12 @@ function finalVerdict(){
     speed = entryCount / 5;
     $('#finalSpeed').attr("value", speed);
     $('#totalErrors').attr("value", errors);
-    $('#accuracy').attr("value", ((correctEntries / entryCount) * 100).toPrecision(4)); 
+    if (entryCount == 0){
+        $('#accuracy').attr("value", 0);
+    }
+    else{
+        $('#accuracy').attr("value", ((correctEntries / entryCount) * 100).toPrecision(4)); 
+    }
     $('form').submit();
 }
+

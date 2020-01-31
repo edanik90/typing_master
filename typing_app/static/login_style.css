@@ -15,6 +15,22 @@
     display: inline-block;
 }
 
+h5{
+    display: inline-block;
+}
+
+.timer, .errorCounter{
+    margin: 20px;
+    display: inline-block;
+    font-size: 24px;
+    text-align: center;
+    width: 50px;
+    padding: 10px;
+    background-color: #0768cf;
+    border-radius: 10px;
+    color: white;
+}
+
 .smallContainer{
     text-align: left;
     margin: 0px auto;
@@ -34,6 +50,20 @@ table{
 
 td{
     padding: 5px;
+}
+
+#user_input{
+    width: 450px;
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+}
+
+#content{
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid #0768cf;
+    padding: 15px;
 }
 
 th{
