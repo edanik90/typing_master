@@ -1,0 +1,33 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+#wrapper{
+    margin: 0px auto;
+    width: 970px;
+    text-align: center;
+}
+
+.login{
+    text-align: left;
+    margin: 0px auto;
+    display: inline-block;
+}
+
+ul, ul li{
+    font-weight: bold;
+    color: red;
+    list-style-type: none;
+    padding: 5px;
+    text-align: center;
+}
+
+ul li::before {
+    content: "!";  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: red; /* Change the color */
+    display: inline-block;
+    font-weight: bold;
+    width: 2em;
+    margin-left: -1em;
+}
