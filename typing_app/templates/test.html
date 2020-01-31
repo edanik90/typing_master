@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Typing Master</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login_style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
@@ -18,21 +20,26 @@
         <a class="navbar-brand" href="/typingmaster/logout" class="pure-menu-link">Logout</a>
     </nav>
     <main>
-        TIME LEFT<div id="timer">60</div>
-        ERRORS<div id="errors_made">0</div>
-        <form action="/typingmaster/collect" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-                <textarea id="content" name="content" cols="100" rows="15" style="resize: none;" readonly>{{text.content}}</textarea>
-            </div>            
-            <div class="form-group">
-                <input id="user_input" type="text" name="user_input">
+        <div id="wrapper">
+            <div class="smallContainer">
+                <h5>TIME LEFT</h5><div class = "timer" id="timer">60</div>
+                <h5>ERRORS</h5><div class = "errorCounter" id="errors_made">0</div>
+                <form action="/typingmaster/collect" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <textarea id="content" name="content" cols="100" rows="15" style="resize: none;" readonly>{{text.content}}</textarea>
+                    </div>            
+                    <div class="form-group">
+                        <input id="user_input" type="text" name="user_input" style="width: 400px;">
+                    </div>
+                    <input type="hidden" name="final_speed" id="finalSpeed" value="">
+                    <input type="hidden" name="total_errors" id="totalErrors" value="">
+                    <input type="hidden" name="accuracy" id="accuracy" value="">
+                    <button type="submit" class="btn btn-primary" name="cancel">Cancel</button>
+                </form>
             </div>
-            <input type="hidden" name="final_speed" id="finalSpeed" value="">
-            <input type="hidden" name="total_errors" id="totalErrors" value="">
-            <input type="hidden" name="accuracy" id="accuracy" value="">
-            <button type="submit" class="btn btn-primary" name="cancel">Cancel</button>
-        </form>
+        </div>
+
     </main>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="../static/test.js"></script>

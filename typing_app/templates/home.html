@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Typing Master</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'login_style.css' %}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
@@ -18,27 +20,34 @@
         <a class="navbar-brand" href="/typingmaster/logout" class="pure-menu-link">Logout</a>
     </nav>
     <main>
-        <h2>Welcome to Typing Master!</h2>
-        <h4>Challenge yourself: complete this test in 1 minute</h4>
-            <form action="/typingmaster/start" method="POST">
-                {% csrf_token %}
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" id="beginner" type="radio" name="test_level" value="1">
-                    <label class="custom-control-label" for="beginner">Beginner</label>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" id="intermediate" type="radio" name="test_level" value="2">
-                    <label class="custom-control-label" for="intermediate">Intermediate</label>
-                </div>
-                <div class="custom-control custom-radio">
-                    <input class="custom-control-input" id="master" type="radio" name="test_level" value="3">
-                    <label class="custom-control-label" for="master">Master</label>
-                </div>
-                <button type="submit" class="btn btn-primary" name="submit">START!</button>
-            </form>
-            {% for message in messages %}
-                {{message}}
-            {% endfor %}
+        <div id="wrapper">
+            <h1>Welcome to Typing Master!</h1>
+            <h3>Select the test difficulty to start:</h3>
+            <div class="smallContainerForHomePage">
+                <form action="/typingmaster/start" method="POST">
+                    {% csrf_token %}
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" id="beginner" type="radio" name="test_level" value="1">
+                        <label class="custom-control-label" for="beginner">Beginner</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" id="intermediate" type="radio" name="test_level" value="2">
+                        <label class="custom-control-label" for="intermediate">Intermediate</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input class="custom-control-input" id="master" type="radio" name="test_level" value="3">
+                        <label class="custom-control-label" for="master">Master</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" name="submit">START!</button>
+                </form>
+                <ul class="errors">
+                    {% for message in messages %}
+                        <li>{{message}}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
     </main>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

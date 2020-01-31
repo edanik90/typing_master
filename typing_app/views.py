@@ -61,14 +61,18 @@ def hall_of_fame(request):
     if not "user_id" in request.session:
         messages.error(request, "Please, log in")
         return redirect("/")
-    temp_list = []
+    speed_list = []
+    accuracy_list = []
     users = User.objects.all()
     for item in users:
-        temp_list.append(item.top_speed())
-    print(temp_list)
-    temp_list.sort(key = lambda Test: Test.speed, reverse = True)
+        speed_list.append(item.top_speed())
+    for item in users:
+        accuracy_list.append(item.top_accuracy())
+    accuracy_list.sort(key = lambda Test: Test.accuracy, reverse = True)
+    speed_list.sort(key = lambda Test: Test.speed, reverse = True)
     context = {
-        "tests":temp_list
+        "tests_by_speed":speed_list,
+        "tests_by_accuracy":accuracy_list
     }
     return render(request, "halloffame.html", context)
 
