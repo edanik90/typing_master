@@ -10,7 +10,7 @@ import simplejson
 
 def typingmaster_home(request):
     if not "user_id" in request.session:
-        messages.error(request, "Please, log in")
+        messages.error(request, "Please, log in!")
         return redirect("/")
     return render(request, "home.html")
 
